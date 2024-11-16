@@ -37,3 +37,21 @@ export class Player {
         game.createPlayerProjectile();
     }
 }
+
+const playerElement = document.getElementById('player');
+let playerPosition = { x: 375, y: 550 }; // Starting position
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' && playerPosition.x > 0) {
+        playerPosition.x -= 10;
+    } else if (e.key === 'ArrowRight' && playerPosition.x < 750) {
+        playerPosition.x += 10;
+    }
+    updatePlayerPosition();
+});
+
+function updatePlayerPosition() {
+    playerElement.style.left = `${playerPosition.x}px`;
+    playerElement.style.bottom = `${playerPosition.y}px`;
+}
+

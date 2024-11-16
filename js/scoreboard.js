@@ -39,3 +39,19 @@ export class Scoreboard {
         this.updateDisplay();
     }
 }
+
+let score = 0;
+let lives = 3;
+
+function updateScore() {
+    document.getElementById('scoreboard').textContent = `Score: ${score}`;
+}
+
+function updateLives() {
+    document.getElementById('lives').textContent = `Lives: ${lives}`;
+}
+
+// Call these whenever needed, e.g., after a collision
+updateScore();
+updateLives();
+

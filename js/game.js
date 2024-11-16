@@ -4,7 +4,7 @@ import { InputHandler } from './inputHandler.js';
 import { Lives } from './lives.js';
 import { PauseMenu } from './pauseMenu.js';
 import { Player } from './player.js';
-import { Projectile } from './projectile.js';
+import { Projectile, moveProjectiles } from './projectile.js';
 import { Renderer } from './renderer.js';
 import { Scoreboard } from './scoreboard.js';
 import { Timer } from './timer.js';
@@ -210,3 +210,15 @@ class Game {
 
 const game = new Game();
 game.start();
+
+function gameLoop() {
+    // Update all game elements
+    renderEnemies();
+    moveProjectiles();
+    checkCollisions();
+    checkGameOver();
+}
+
+// Run the game loop at a set interval
+setInterval(gameLoop, 50);
+

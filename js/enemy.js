@@ -42,3 +42,28 @@ export class Enemy {
         }
     }
 }
+
+const gameContainer = document.getElementById('game-container');
+let enemies = [
+    { x: 100, y: 100 },
+    { x: 200, y: 100 },
+    { x: 300, y: 100 },
+];
+
+function renderEnemies() {
+    document.querySelectorAll('.enemy').forEach(enemy => enemy.remove());
+    enemies.forEach(enemy => {
+        const enemyElement = document.createElement('div');
+        enemyElement.classList.add('enemy');
+        enemyElement.style.left = `${enemy.x}px`;
+        enemyElement.style.top = `${enemy.y}px`;
+        gameContainer.appendChild(enemyElement);
+    });
+}
+
+// Call this periodically to update enemy positions
+setInterval(() => {
+    enemies = enemies.map(enemy => ({ ...enemy, y: enemy.y + 5 })); // Move enemies down
+    renderEnemies();
+}, 500);
+
