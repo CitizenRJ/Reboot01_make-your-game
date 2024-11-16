@@ -76,11 +76,23 @@ class Game {
 
     render() {
         this.renderer.clear();
+
         this.player.draw(this.renderer);
-        this.enemies.forEach(enemy => enemy.draw(this.renderer));
-        this.playerProjectiles.forEach(projectile => projectile.draw(this.renderer));
-        this.enemyProjectiles.forEach(projectile => projectile.draw(this.renderer));
-        this.scoreboard.draw(this.renderer);
+
+        this.enemies.forEach((enemy, index) => {
+            this.renderer.drawRect(enemy.x, enemy.y, enemy.width, enemy.height, 'red', `enemy-${index}`);
+        });
+
+        this.playerProjectiles.forEach((projectile, index) => {
+            this.renderer.drawRect(projectile.x, projectile.y, projectile.width, projectile.height, 'green', `player-projectile-${index}`);
+        });
+
+        this.enemyProjectiles.forEach((projectile, index) => {
+            this.renderer.drawRect(projectile.x, projectile.y, projectile.width, projectile.height, 'orange', `enemy-projectile-${index}`);
+        });
+
+        document.getElementById('scoreboard').textContent = `Score: ${this.scoreboard.currentScore}`;
+        document.getElementById('lives').textContent = `Lives: ${this.lives.current}`;
     }
 
     checkCollisions() {

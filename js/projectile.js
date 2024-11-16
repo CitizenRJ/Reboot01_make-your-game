@@ -13,7 +13,7 @@ export class Projectile {
     }
 
     draw(renderer) {
-        renderer.drawRect(this.x, this.y, this.width, this.height, this.isPlayerProjectile ? 'green' : 'yellow');
+        renderer.drawRect(this.x, this.y, this.width, this.height, this.isPlayerProjectile ? 'green' : 'orange');
     }
 }
 

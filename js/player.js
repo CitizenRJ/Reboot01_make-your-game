@@ -18,7 +18,7 @@ export class Player {
     }
 
     draw(renderer) {
-        renderer.drawRect(this.x, this.y, this.width, this.height, 'blue');
+        renderer.drawRect(this.x, this.y, this.width, this.height, 'blue', 'player');
     }
 
     moveLeft() {

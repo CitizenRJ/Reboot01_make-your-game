@@ -32,8 +32,7 @@ export class Enemy {
 
 
     draw(renderer) {
-        const color = this.type === 'zigzag' ? 'purple' : 'red';
-        renderer.drawRect(this.x, this.y, this.width, this.height, color);
+        renderer.drawRect(this.x, this.y, this.width, this.height, 'red');
     }
 
     shoot(game) {

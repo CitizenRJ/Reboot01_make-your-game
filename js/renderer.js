@@ -1,24 +1,27 @@
 export class Renderer {
     constructor() {
-        this.gameArea = document.getElementById('game-area');
-        this.context = this.gameArea.getContext('2d');
-        this.setCanvasSize();
-        window.addEventListener('resize', () => this.setCanvasSize());
-    }
-
-    setCanvasSize() {
-        this.gameArea.width = window.innerWidth;
-        this.gameArea.height = window.innerHeight;
+        this.gameContainer = document.getElementById('game-container');
     }
 
     clear() {
-        this.context.clearRect(0, 0, this.gameArea.width, this.gameArea.height);
+        this.gameContainer.innerHTML = ''; // Clear all elements
     }
 
-    drawRect(x, y, width, height, color) {
-        this.context.fillStyle = color;
-        this.context.fillRect(x, y, width, height);
-    }
+    drawRect(x, y, width, height, color, id = '') {
+        let element = document.getElementById(id);
 
-    // Add more drawing methods as needed
+        if (!element) {
+            element = document.createElement('div');
+            element.style.position = 'absolute';
+            if (id) element.id = id;
+            this.gameContainer.appendChild(element);
+        }
+
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+        element.style.width = `${width}px`;
+        element.style.height = `${height}px`;
+        element.style.backgroundColor = color;
+    }
 }
+
