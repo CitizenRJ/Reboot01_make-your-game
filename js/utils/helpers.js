@@ -39,3 +39,57 @@ export function gameOverScreen() {
         }
     }
 }
+
+export function showPauseMenu() {
+    gameState.pauseMenu = true;
+    gameState.paused = true;
+
+    const pauseMenu = document.createElement('div');
+    pauseMenu.id = 'pauseMenu';
+    pauseMenu.style.position = 'absolute';
+    pauseMenu.style.top = '0';
+    pauseMenu.style.left = '0';
+    pauseMenu.style.width = '100%';
+    pauseMenu.style.height = '100%';
+    pauseMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    pauseMenu.style.display = 'flex';
+    pauseMenu.style.flexDirection = 'column';
+    pauseMenu.style.justifyContent = 'center';
+    pauseMenu.style.alignItems = 'center';
+    pauseMenu.style.color = '#fff';
+    pauseMenu.style.fontSize = '24px';
+    pauseMenu.style.zIndex = '1000';
+
+    const continueButton = document.createElement('button');
+    continueButton.innerText = 'Continue';
+    continueButton.style.margin = '10px';
+    continueButton.style.padding = '10px 20px';
+    continueButton.style.color = '#ffffff';
+    continueButton.style.backgroundColor = '333333';
+    continueButton.onclick = () => {
+        hidePauseMenu();
+    };
+
+    const restartButton = document.createElement('button');
+    restartButton.innerText = 'Restart';
+    restartButton.style.margin = '10px';
+    restartButton.style.padding = '10px 20px';
+    restartButton.style.color = '#ffffff';
+    restartButton.style.backgroundColor = '333333';
+    restartButton.onclick = () => {
+        location.reload();
+    };
+
+    pauseMenu.appendChild(continueButton);
+    pauseMenu.appendChild(restartButton);
+    world.appendChild(pauseMenu);
+}
+
+export function hidePauseMenu() {
+    const pauseMenu = document.getElementById('pauseMenu');
+    if (pauseMenu) {
+        world.removeChild(pauseMenu);
+    }
+    gameState.pauseMenu = false;
+    gameState.paused = false;
+}

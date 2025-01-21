@@ -1,7 +1,7 @@
 import Player from './classes/Player.js';
 import Invader from './classes/Invader.js';
 import { augmenterTemps } from './utils/timer.js';
-import { deleteAllElements, gameOverScreen } from './utils/helpers.js';
+import { deleteAllElements, gameOverScreen, showPauseMenu, hidePauseMenu } from './utils/helpers.js';
 import { world, keys, invaders, missilesPlayer, missilesInvader, gameState } from './state.js';
 
 // Initialize game state
@@ -32,7 +32,8 @@ function animationLoop() {
         return;
     }
 
-    if (gameState.pauseMenu || gameState.nextWaveLoadingAnimation) return;
+    if (gameState.pauseMenu || gameState.nextWaveLoadingAnimation) 
+        return;
 
     if (gameState.player.lives <= 0) {
         deleteAllElements();
@@ -108,6 +109,7 @@ function animationLoop() {
 animationLoop();
 
 // Event listeners
+
 addEventListener('keydown', ({ key }) => {
     switch (key) {
         case 'ArrowLeft':
@@ -126,13 +128,20 @@ addEventListener('keydown', ({ key }) => {
             keys.Enter.pressed = true;
             break;
         case 'Escape':
-            gameState.pauseMenu = true;
+            if (gameState.pauseMenu) {
+                hidePauseMenu();
+            } else {
+                showPauseMenu();
+            }
             break;
         case ' ':
-            gameState.player.shoot();
+            if (!gameState.paused) {
+                gameState.player.shoot();
+            }
             break;
     }
 });
+
 
 addEventListener('keyup', ({ key }) => {
     switch (key) {

@@ -27,4 +27,5 @@ export const gameState = {
     timerSecond: 0,
     timerMinute: 0,
     requestId: null,
+    paused: false,
 };
