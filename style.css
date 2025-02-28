@@ -14,7 +14,7 @@
     height: 80vh;
     position: absolute;
     border: 2px dotted white;
-    transform: z-index: -1;
+    transform: z-index: -3;
 }
 
 .lives {
